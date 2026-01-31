@@ -2,161 +2,284 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>من ندى لأغلى سارة ❤️🌙</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@1,700&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NIU chat | المركز الرسمي</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        :root { --blue: #00d2ff; --gold: #ffd700; --glass: rgba(255, 255, 255, 0.05); }
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow-x: hidden; background: #001a33; font-family: 'Cairo', sans-serif; color: #fff; }
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
         
-        /* واجهة الدخول */
-        #welcome-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #003366 0%, #001a33 100%);
-            z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center;
-        }
-        .sara-btn {
-            background: none; border: 3px solid var(--blue); color: var(--blue);
-            padding: 15px 60px; font-size: 2.2rem; font-weight: 900; border-radius: 20px;
-            cursor: pointer; transition: 0.4s; box-shadow: 0 0 20px var(--blue);
-        }
-        .sara-btn:hover { background: var(--blue); color: #000; transform: scale(1.05); }
-
-        /* المحتوى الرئيسي */
-        #main-content { display: none; opacity: 0; transition: opacity 1s ease; text-align: center; min-height: 100vh; }
-        .container { padding: 40px 20px; }
+        body { margin: 0; padding: 0; background: #0a0a0a; font-family: 'Cairo', sans-serif; color: #eee; overflow-x: hidden; }
+        .container { width: 100%; max-width: 500px; margin: auto; background: #111; min-height: 100vh; padding: 12px; box-sizing: border-box; border-left: 2px solid #e60000; border-right: 2px solid #e60000; box-shadow: 0 0 30px rgba(230, 0, 0, 0.2); }
         
-        .timer-box { background: var(--glass); border: 2px solid var(--blue); border-radius: 50%; width: 75px; height: 75px; display: inline-flex; flex-direction: column; justify-content: center; align-items: center; margin: 5px; }
-        .timer-box span { font-size: 1.4rem; font-weight: 900; color: var(--gold); }
+        .header { text-align: center; margin-bottom: 25px; padding-top: 15px; }
+        .big-yoso { font-size: 55px; font-weight: 900; margin: 0; background: linear-gradient(180deg, #ff0000 0%, #800000 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; filter: drop-shadow(0 0 5px rgba(255,0,0,0.3)); }
+        .brand-sub { font-size: 18px; font-weight: 900; color: #fff; letter-spacing: 1px; margin-top: 5px; }
 
-        .grid-layout { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 400px; margin: 30px auto; }
-        .icon-btn { background: var(--glass); border: 1px solid var(--blue); border-radius: 15px; padding: 25px; cursor: pointer; transition: 0.3s; }
-        .icon-btn:hover { transform: rotate(3deg); background: rgba(0, 210, 255, 0.1); }
-        .icon-btn span { font-size: 2.5rem; display: block; }
+        .btn-main { 
+            display: block; width: 100%; padding: 15px; margin-bottom: 15px; 
+            background: #1a1a1a; border: 1px solid #333; border-radius: 12px; 
+            text-align: center; text-decoration: none; color: #fff; 
+            font-weight: 900; font-size: 16px; box-sizing: border-box; cursor: pointer;
+            position: relative; box-shadow: 0 4px 0px #000, 0 6px 10px rgba(230,0,0,0.1);
+            transition: all 0.2s ease; overflow: hidden;
+        }
 
-        .letter { background: rgba(0, 210, 255, 0.05); border: 1px solid var(--blue); border-radius: 20px; padding: 30px; margin: 30px auto; max-width: 500px; line-height: 2; font-size: 1.2rem; }
+        .btn-main::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(transparent, rgba(230, 0, 0, 0.3), transparent 30%);
+            animation: rotateGlow 4s linear infinite; z-index: 0; pointer-events: none;
+        }
+
+        @keyframes rotateGlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .btn-main span { position: relative; z-index: 1; }
+        .btn-main:active { transform: translateY(3px); box-shadow: 0 1px 0px #000; }
+        .click-here { display: block; font-size: 9px; font-weight: 400; opacity: 0.7; margin-top: 2px; color: #ff4d4d; }
+
+        .whatsapp-options { display: none; margin-bottom: 15px; gap: 10px; flex-direction: column; }
+        .whatsapp-options.active { display: flex; }
+
+        .view { display: none; }
+        .view.active { display: block; }
+
+        .tabs { display: flex; gap: 4px; margin-bottom: 15px; }
+        .tab-btn { flex: 1; padding: 10px 5px; font-size: 9.5px; font-weight: bold; border: 1.5px solid #e60000; background: #111; color: #e60000; border-radius: 8px; cursor: pointer; white-space: nowrap; }
+        .tab-btn.active { background: #e60000; color: white; }
+
+        .table-wrapper { width: 100%; margin: 10px 0; border: 1px solid #333; border-radius: 8px; overflow: hidden; background: #1a1a1a; }
+        table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        th { background: #2a0000; color: #ff4d4d; font-size: 8px; padding: 6px 1px; border: 1px solid #441111; font-weight: 900; }
+        td { border: 1px solid #222; padding: 6px 1px; text-align: center; font-size: 8.5px; font-weight: 700; color: #ddd; word-wrap: break-word; }
+
+        .policy-box { background: #1a0a0a; border-right: 4px solid #e60000; padding: 12px; margin: 10px 0; font-size: 11px; line-height: 1.6; text-align: right; color: #ccc; }
+        .warning-box { background: #330000; border: 1px solid #ff0000; padding: 12px; margin: 10px 0; font-size: 11px; line-height: 1.6; text-align: center; color: #ff4d4d; border-radius: 8px; font-weight: bold; }
         
-        /* تأثيرات الهلال */
-        .moon { position: fixed; top: -50px; color: var(--gold); font-size: 20px; z-index: 1; animation: fall linear forwards; }
-        @keyframes fall { to { transform: translateY(105vh); opacity: 0; } }
-
-        /* التعديل المهم: تنسيق الرسالة المنبثقة لتظهر في المنتصف */
-        .overlay { 
-            display: none; 
-            position: fixed; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.85); 
-            z-index: 999; 
-            backdrop-filter: blur(8px); 
-        }
-        #msgPopup { 
-            display: none; 
-            position: fixed; 
-            top: 50%; left: 50%; 
-            transform: translate(-50%, -50%); /* يخليها في النص بالظبط */
-            z-index: 1000; 
-            width: 85%; 
-            max-width: 400px; 
-        }
-        .card-inner { 
-            background: #001a33; 
-            color: #fff; 
-            padding: 35px; 
-            border-radius: 25px; 
-            border: 3px solid var(--blue); 
-            text-align: center; 
-            box-shadow: 0 0 30px rgba(0, 210, 255, 0.3);
-        }
+        .section-h { color: #ff0000; font-weight: 900; font-size: 15px; margin: 15px 0 8px; border-right: 5px solid #e60000; padding-right: 10px; }
+        .back-home { width: 100%; padding: 15px; background: #fff; color: #000; border: none; border-radius: 12px; font-weight: bold; margin-top: 15px; cursor: pointer; display: block; text-align: center; text-decoration: none; }
+        .save-img-btn { background: #e60000; color: white; border: none; padding: 15px; border-radius: 12px; font-size: 14px; cursor: pointer; margin-top: 10px; width: 100%; font-weight: bold; box-shadow: 0 4px 0px #800000; }
+        
+        .no-export { display: none !important; }
     </style>
 </head>
 <body>
 
-    <div id="welcome-screen">
-        <div style="font-family: 'Amiri'; font-size: 2.2rem; margin-bottom: 30px; text-align: center; padding: 0 20px;">إلى رفيقة القلب "سارة".. ❤️🌙</div>
-        <button class="sara-btn" onclick="startSara()">سارة</button>
-        <p style="margin-top: 20px; color: var(--blue); font-weight: bold;">دوسي على اسمك يا سوسو 👇</p>
-    </div>
-
-    <div id="main-content">
-        <div class="container">
-            <h1 style="font-size: 2.5rem; color: var(--blue); text-shadow: 0 0 10px var(--blue);">رمضان أحلى مع سارة 🌙✨</h1>
-            <p>المسافات بعيدة بس القلوب أهالي ✨</p>
-
-            <div style="margin: 25px auto;">
-                <div class="timer-box"><span id="days">00</span>يوم</div>
-                <div class="timer-box"><span id="hours">00</span>ساعة</div>
-                <div class="timer-box"><span id="mins">00</span>دقيقة</div>
-                <div class="timer-box"><span id="secs">00</span>ثانية</div>
+    <div class="container" id="exportContent">
+        <div id="homeView" class="view active">
+            <div class="header">
+                <h1 class="big-yoso">NIU chat</h1>
+                <div class="brand-sub">NIU chat-Group Voice Chat</div>
             </div>
+            <div class="menu">
+                <div class="btn-main" onclick="show('policyView')"><span>سياسات الوكالات (مضيفين - BD - شحن)</span><span class="click-here">اضغط هنا</span></div>
+                <div class="btn-main" onclick="show('shipView')"><span>بيان أسعار الشحن المعتمدة</span><span class="click-here">اضغط هنا</span></div>
+                <div class="btn-main" onclick="show('daemView')"><span>مكافآت ومزايا الداعمين</span><span class="click-here">اضغط هنا</span></div>
+                <div class="btn-main" onclick="show('withdrawView')" style="border-color:#e60000; color:#ff4d4d"><span>طرق سحب الراتب</span><span class="click-here">اضغط هنا</span></div>
+                
+                <div class="btn-main" style="border-color:#25d366; color:#25d366" onclick="toggleWhatsapp()">
+                    <span>تواصل واتساب مع الإدارة</span><span class="click-here">اضغط هنا للتواصل</span>
+                </div>
+                
+                <div id="whatsappBox" class="whatsapp-options">
+                    <a href="https://wa.me/201200087007" class="btn-main" style="border-color:#25d366; color:#25d366; margin-bottom: 5px;"><span>مستر علي (الإدارة الرسمية)</span></a>
+                </div>
 
-            <div class="grid-layout">
-                <div class="icon-btn" onclick="pop(1)"><span>🌻</span><p>رقتك</p></div>
-                <div class="icon-btn" onclick="pop(2)"><span>📞</span><p>كلامنا</p></div>
-                <div class="icon-btn" onclick="pop(3)"><span>🌟</span><p>نور حياتي</p></div>
-                <div class="icon-btn" onclick="pop(4)"><span>🤲</span><p>دعوة ليكي</p></div>
+                <div class="btn-main" onclick="show('linksView')" style="border: 2px solid #e60000; background: #2a0000; color: #fff;"><span>تحميل التطبيق والروابط الرسمية</span><span class="click-here">اضغط هنا</span></div>
             </div>
-
-            <div class="letter">
-                سارة يا غالية، رمضان السنة دي ببعتلك فيه كل حبي. أنتِ الصاحبة اللي بتخلي كل حاجة صعبة تهون بكلمة حلوة منها. رمضان كريم يا حبيبتي!
-            </div>
-            <footer style="font-weight: 900; font-size: 1.8rem; color: var(--blue);">بكل الحب: نــدى ❤️</footer>
         </div>
-    </div>
 
-    <audio id="saraAudio" loop preload="auto">
-        <source src="https://archive.org/download/RamadanFawazeer/HatouElFanawis.mp3" type="audio/mpeg">
-    </audio>
+        <div id="policyView" class="view">
+            <div class="tabs no-export-item">
+                <button class="tab-btn active" onclick="tab(this,'p_mod','policyView')">المضيفين</button>
+                <button class="tab-btn" onclick="tab(this,'p_bd','policyView')">سياسة الـ BD</button>
+                <button class="tab-btn" onclick="tab(this,'p_agent','policyView')">وكالة الشحن</button>
+            </div>
+            
+            <div id="p_mod" class="t-content">
+                <div class="section-h">سياسة وكالة المضيفين NIU chat</div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>المستوى</th><th>التارجت كوينز</th><th>راتب المضيف$</th><th>راتب الوكيل$</th><th>مجموع الراتب$</th><th>المكافأة</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>850000</td><td>4</td><td>1</td><td>5</td><td>-</td></tr>
+                            <tr><td>-</td><td>1700000</td><td>8</td><td>2</td><td>10</td><td>-</td></tr>
+                            <tr><td>2</td><td>2600000</td><td>12</td><td>3</td><td>15</td><td>-</td></tr>
+                            <tr><td>3</td><td>4400000</td><td>20</td><td>5</td><td>25</td><td>-</td></tr>
+                            <tr><td>4</td><td>7000000</td><td>32</td><td>8</td><td>40</td><td>-</td></tr>
+                            <tr><td>5</td><td>11500000</td><td>52</td><td>13</td><td>65</td><td>-</td></tr>
+                            <tr><td>6</td><td>15500000</td><td>68</td><td>17</td><td>85</td><td>-</td></tr>
+                            <tr><td>7</td><td>19500000</td><td>88</td><td>22</td><td>110</td><td>-</td></tr>
+                            <tr><td>8</td><td>25000000</td><td>112</td><td>28</td><td>140</td><td>-</td></tr>
+                            <tr><td>9</td><td>32500000</td><td>144</td><td>36</td><td>180</td><td>VIP3</td></tr>
+                            <tr><td>10</td><td>41500000</td><td>184</td><td>46</td><td>230</td><td>VIP4</td></tr>
+                            <tr><td>11</td><td>55000000</td><td>240</td><td>60</td><td>300</td><td>VIP5</td></tr>
+                            <tr><td>12</td><td>73500000</td><td>320</td><td>80</td><td>400</td><td>ABCDABCD</td></tr>
+                            <tr><td>13</td><td>85500000</td><td>376</td><td>94</td><td>470</td><td>ABCABCD</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="policy-box">
+                    <strong>ملاحظات المضيفين:</strong><br>
+                    - (سعر الكوينات) $1 = 100000 كوينز.<br>
+                    - كأس الروم يومي 5%.<br>
+                    - ينزل للمضيف بالتارجت 100% من قيمة الهدايا و مردود للمحفظة 15% كعملات ذهبية.<br>
+                    - تسليم الراتب بعد اليوم 10 من الشهر التالي.<br>
+                    - يستلم المضيف راتبة للمحفظة مباشرة.<br>
+                    - الزيادة فوق التارجت لكل زيادة فوق التارجت بعد تحقيق التارجت 50% ينزل للمحفظة مباشرة بداية الشهر التالي.
+                </div>
+            </div>
 
-    <div class="overlay" onclick="unpop()"></div>
-    <div id="msgPopup">
-        <div class="card-inner">
-            <h2 id="msgTitle" style="color: var(--blue); font-family: 'Amiri'; margin-bottom: 15px;"></h2>
-            <p id="msgBody" style="font-weight: bold; font-size: 1.2rem; line-height: 1.6;"></p>
-            <button onclick="unpop()" style="margin-top: 25px; background: var(--blue); color: #000; border: none; padding: 12px 30px; border-radius: 10px; cursor: pointer; font-weight: 900;">تسلمي يا نودي ❤️</button>
+            <div id="p_bd" class="t-content" style="display:none">
+                <div class="section-h">سياسة NIU chat BD</div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>المستوى</th><th>عمولة</th><th>$ راتب ثابت</th><th>$ راتب الفريق</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>2%</td><td>10</td><td>500</td></tr>
+                            <tr><td>2</td><td>2%</td><td>50</td><td>1000</td></tr>
+                            <tr><td>3</td><td>2%</td><td>100</td><td>3000</td></tr>
+                            <tr><td>4</td><td>2%</td><td>150</td><td>5000</td></tr>
+                            <tr><td>5</td><td>2%</td><td>300</td><td>10000</td></tr>
+                            <tr><td>6</td><td>2%</td><td>500</td><td>20000</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="policy-box">
+                    <strong>ملاحظات BD:</strong><br>
+                    1 - يمكن استلام الراتب الثابت في حالة جلبت وكالتين بنفس الشهر وكل وكالة فيها خمسة مضيفين محققين تارجت ثالث.<br>
+                    2 - جلب الوكالات يكون من خارج التطبيق.<br>
+                    3 - يمكن الحصول ع ايدي مميز عند الوصول للمستوى الثالث.
+                </div>
+            </div>
+
+            <div id="p_agent" class="t-content" style="display:none">
+                <div class="section-h">سياسة وكالة الشحن NIU chat</div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>المستوى</th><th>مبلغ الشحن$</th><th>لكل $1</th><th>إجمالي الكوينز</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>500</td><td>113000</td><td>56500000</td></tr>
+                            <tr><td>2</td><td>1000</td><td>115000</td><td>115000000</td></tr>
+                            <tr><td>3</td><td>2000</td><td>116000</td><td>232000000</td></tr>
+                            <tr><td>4</td><td>5000</td><td>118000</td><td>590000000</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="section-h">مكافأة وكيل الشحن</div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>المستوى</th><th>مبلغ الشحن$</th><th>المكافأة</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>500</td><td>VIP4</td></tr>
+                            <tr><td>2</td><td>1000</td><td>VIP5</td></tr>
+                            <tr><td>3</td><td>2000</td><td>ABCDABC</td></tr>
+                            <tr><td>4</td><td>5000</td><td>ABCABC</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="policy-box">
+                    <strong>ملاحظات وكالة الشحن:</strong><br>
+                    1- أول شحنة لاتقل عن $500.<br>
+                    2- طرق الدفع يو اس تي دي , بايونير .<br>
+                    3- يمنع البيع بأقل من سعر المنصة.
+                </div>
+            </div>
+            <button class="back-home no-export-item" onclick="show('homeView')">العودة للرئيسية</button>
+        </div>
+
+        <div id="shipView" class="view">
+            <div class="tabs no-export-item">
+                <button class="tab-btn active" onclick="tab(this,'s_google','shipView')">شحن جوجل</button>
+                <button class="tab-btn" onclick="tab(this,'s_egypt','shipView')">شحن الوكيل (مصر)</button>
+            </div>
+            <div id="s_google" class="t-content">
+                <div class="section-h">أسعار شحن جوجل الرسمي</div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>الكوينات</th><th>السعر (USD)</th></tr></thead>
+                        <tbody>
+                            <tr><td>100000</td><td>0.99</td></tr>
+                            <tr><td>500000</td><td>4.99</td></tr>
+                            <tr><td>1000000</td><td>9.99</td></tr>
+                            <tr><td>5000000</td><td>49.99</td></tr>
+                            <tr><td>10000000</td><td>99.99</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="s_egypt" class="t-content" style="display:none">
+                <div class="section-h">شحن الوكيل المعتمد (EGP)</div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>المبلغ (EGP)</th><th>الكوينات</th></tr></thead>
+                        <tbody>
+                            <tr><td>EGP 50</td><td>105,000 كوينز</td></tr>
+                            <tr><td>EGP 100</td><td>215,000 كوينز</td></tr>
+                            <tr><td>EGP 200</td><td>430,000 كوينز</td></tr>
+                            <tr><td>EGP 400</td><td>860,000 كوينز</td></tr>
+                            <tr><td>EGP 1,000</td><td>2,150,000 كوينز</td></tr>
+                            <tr><td>EGP 5,000</td><td>10,800,000 كوينز</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <button class="back-home no-export-item" onclick="show('homeView')">العودة للرئيسية</button>
+        </div>
+
+        <div id="withdrawView" class="view">
+            <div class="section-h">طرق سحب الراتب المعتمدة</div>
+            <div class="policy-box">
+                يتم سحب الراتب من خلال القنوات الرسمية التالية لضمان حقوقكم:<br><br>
+                <strong>1. السحب عن طريق الإدارة:</strong> يتم التواصل مباشرة مع الإدارة الرسمية للتطبيق لتحويل المستحقات.<br>
+                <strong>2. وكلاء الشحن المعتمدين:</strong> يمكن السحب عبر الوكلاء الرسميين داخل التطبيق (فودافون كاش - شام كاش).
+            </div>
+            
+            <div class="warning-box">
+                ⚠️ تحذير هـام جداً:<br>
+                يُمنع التعامل نهائياً مع أي أطراف غير معتمدة أو وكلاء خارج القائمة الرسمية للتطبيق. التطبيق غير مسؤول عن أي تعاملات مالية تتم مع جهات غير رسمية. تأكد دائماً من هوية الوكيل قبل البدء بأي معاملة.
+            </div>
+            <button class="back-home no-export-item" onclick="show('homeView')">العودة للرئيسية</button>
+        </div>
+
+        <div id="daemView" class="view">
+            <div class="section-h">مكافآت ومزايا الداعمين</div>
+            <div class="policy-box">يتم منح VIP4 مجانًا فور التحميل لجميع الداعمين الجدد بعد التواصل مع الإدارة وتأكيد الشحن الأول.</div>
+            <button class="back-home no-export-item" onclick="show('homeView')">العودة للرئيسية</button>
+        </div>
+
+        <div id="linksView" class="view">
+            <div class="section-h">الروابط الرسمية</div>
+            <a href="https://play.google.com/store/apps/details?id=com.yuyin0117.yogo" class="btn-main"><span>تحميل NIU chat من Google Play</span></a>
+            <button class="back-home" onclick="show('homeView')">العودة للرئيسية</button>
         </div>
     </div>
 
     <script>
-        function startSara() {
-            document.getElementById('saraAudio').play();
-            document.getElementById('welcome-screen').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-            setTimeout(() => { document.getElementById('main-content').style.opacity = '1'; }, 100);
-            setInterval(createMoon, 500);
+        function show(id) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.scrollTo(0,0);
         }
-        function createMoon() {
-            const m = document.createElement('div'); m.classList.add('moon'); m.innerHTML = '🌙';
-            m.style.left = Math.random() * 100 + 'vw';
-            m.style.animationDuration = Math.random() * 3 + 4 + 's';
-            document.body.appendChild(m);
-            setTimeout(() => m.remove(), 7000);
+        function tab(btn, id, parentId) {
+            const p = document.getElementById(parentId);
+            p.querySelectorAll('.t-content').forEach(c => c.style.display = 'none');
+            p.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).style.display = 'block';
+            btn.classList.add('active');
         }
-        const content = {
-            1: ["أجمل روح", "رقة قلبك بتوصلني في كل كلمة وبتهون عليا كتير. رمضان معاكي راحة نفسية."],
-            2: ["ونس الليالي", "كلامنا اللي بيعدي الساعات هو أحلى ونس ليا، ربنا يديم تواصلنا يا غالية."],
-            3: ["الصحبة الصالح", "أنتِ النور اللي بيشجعني دايماً على كل حاجة حلوة. ربنا يخليكي ليا."],
-            4: ["من قلبي لقلبك", "يا رب رمضان ده يجبر بخاطرك ويرزقك السعادة اللي بتوزعيها على كل اللي حواليكي."]
-        };
-        function pop(id) {
-            document.getElementById('msgTitle').innerText = content[id][0];
-            document.getElementById('msgBody').innerText = content[id][1];
-            document.getElementById('msgPopup').style.display = 'block';
-            document.querySelector('.overlay').style.display = 'block';
+        function toggleWhatsapp() {
+            document.getElementById('whatsappBox').classList.toggle('active');
         }
-        function unpop() {
-            document.getElementById('msgPopup').style.display = 'none';
-            document.querySelector('.overlay').style.display = 'none';
+        function exportView(viewId) {
+            const element = document.getElementById(viewId);
+            const itemsToHide = element.querySelectorAll('.no-export-item');
+            itemsToHide.forEach(item => item.classList.add('no-export'));
+            html2canvas(element, { backgroundColor: "#111111", scale: 2 }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `NIUchat-${viewId}.png`;
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+                itemsToHide.forEach(item => item.classList.remove('no-export'));
+            });
         }
-        const deadline = new Date('February 18, 2026 00:00:00').getTime();
-        setInterval(() => {
-            const gap = deadline - new Date().getTime();
-            document.getElementById('days').innerText = Math.floor(gap / 86400000);
-            document.getElementById('hours').innerText = Math.floor((gap % 86400000) / 3600000);
-            document.getElementById('mins').innerText = Math.floor((gap % 3600000) / 60000);
-            document.getElementById('secs').innerText = Math.floor((gap % 60000) / 1000);
-        }, 1000);
     </script>
 </body>
 </html>
-
