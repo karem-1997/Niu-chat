@@ -55,7 +55,7 @@
         
         .section-h { color: #ff0000; font-weight: 900; font-size: 15px; margin: 15px 0 8px; border-right: 5px solid #e60000; padding-right: 10px; }
         .back-home { width: 100%; padding: 15px; background: #fff; color: #000; border: none; border-radius: 12px; font-weight: bold; margin-top: 15px; cursor: pointer; display: block; text-align: center; text-decoration: none; }
-        .save-img-btn { background: #e60000; color: white; border: none; padding: 15px; border-radius: 12px; font-size: 14px; cursor: pointer; margin-top: 10px; width: 100%; font-weight: bold; box-shadow: 0 4px 0px #800000; }
+        .save-img-btn { background: #e60000; color: white; border: none; padding: 15px; border-radius: 12px; font-size: 14px; cursor: pointer; margin-top: 10px; width: 100%; font-weight: bold; box-shadow: 0 4px 0px #800000; text-align: center; }
         
         .no-export { display: none !important; }
     </style>
@@ -183,7 +183,10 @@
                     3- يمنع البيع بأقل من سعر المنصة.
                 </div>
             </div>
-            <button class="back-home no-export-item" onclick="show('homeView')">العودة للرئيسية</button>
+            <div class="no-export-item">
+                <button class="save-img-btn" onclick="exportView('policyView')">حفظ كصورة للشاشة 📸</button>
+                <button class="back-home" onclick="show('homeView')">العودة للرئيسية</button>
+            </div>
         </div>
 
         <div id="shipView" class="view">
@@ -230,7 +233,10 @@
                     <a href="https://m.pparty77.com/webpay/index.html" class="btn-main" style="background: #e60000; border-color: #fff;"><span>اضغط هنا للتوجه لرابط الشحن</span></a>
                 </div>
             </div>
-            <button class="back-home no-export-item" onclick="show('homeView')">العودة للرئيسية</button>
+            <div class="no-export-item">
+                <button class="save-img-btn" onclick="exportView('shipView')">حفظ كصورة للشاشة 📸</button>
+                <button class="back-home" onclick="show('homeView')">العودة للرئيسية</button>
+            </div>
         </div>
 
         <div id="withdrawView" class="view">
@@ -246,7 +252,10 @@
                 ⚠️ تحذير هـام جداً:<br>
                 يُمنع التعامل نهائياً مع أي أطراف غير معتمدة أو وكلاء خارج القائمة الرسمية للتطبيق. التطبيق غير مسؤول عن أي تعاملات مالية تتم مع جهات غير رسمية. تأكد دائماً من هوية الوكيل قبل البدء بأي معاملة.
             </div>
-            <button class="back-home no-export-item" onclick="show('homeView')">العودة للرئيسية</button>
+            <div class="no-export-item">
+                <button class="save-img-btn" onclick="exportView('withdrawView')">حفظ كصورة للشاشة 📸</button>
+                <button class="back-home" onclick="show('homeView')">العودة للرئيسية</button>
+            </div>
         </div>
 
         <div id="daemView" class="view">
@@ -281,8 +290,14 @@
         function exportView(viewId) {
             const element = document.getElementById(viewId);
             const itemsToHide = element.querySelectorAll('.no-export-item');
+            
             itemsToHide.forEach(item => item.classList.add('no-export'));
-            html2canvas(element, { backgroundColor: "#111111", scale: 2 }).then(canvas => {
+            
+            html2canvas(element, { 
+                backgroundColor: "#111111", 
+                scale: 2,
+                useCORS: true 
+            }).then(canvas => {
                 const link = document.createElement('a');
                 link.download = `NIUchat-${viewId}.png`;
                 link.href = canvas.toDataURL("image/png");
