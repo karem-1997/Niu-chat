@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من ندى لأغلى سارة ❤️🌙</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@1,700&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --blue: #00d2ff; --gold: #ffd700; --glass: rgba(255, 255, 255, 0.05); }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow-x: hidden; background: #001a33; font-family: 'Cairo', sans-serif; color: #fff; }
+        
+        /* واجهة الدخول */
+        #welcome-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #003366 0%, #001a33 100%);
+            z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .sara-btn {
+            background: none; border: 3px solid var(--blue); color: var(--blue);
+            padding: 15px 60px; font-size: 2.2rem; font-weight: 900; border-radius: 20px;
+            cursor: pointer; transition: 0.4s; box-shadow: 0 0 20px var(--blue);
+        }
+        .sara-btn:hover { background: var(--blue); color: #000; transform: scale(1.05); }
+
+        /* المحتوى الرئيسي */
+        #main-content { display: none; opacity: 0; transition: opacity 1s ease; text-align: center; min-height: 100vh; }
+        .container { padding: 40px 20px; }
+        
+        .timer-box { background: var(--glass); border: 2px solid var(--blue); border-radius: 50%; width: 75px; height: 75px; display: inline-flex; flex-direction: column; justify-content: center; align-items: center; margin: 5px; }
+        .timer-box span { font-size: 1.4rem; font-weight: 900; color: var(--gold); }
+
+        .grid-layout { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 400px; margin: 30px auto; }
+        .icon-btn { background: var(--glass); border: 1px solid var(--blue); border-radius: 15px; padding: 25px; cursor: pointer; transition: 0.3s; }
+        .icon-btn:hover { transform: rotate(3deg); background: rgba(0, 210, 255, 0.1); }
+        .icon-btn span { font-size: 2.5rem; display: block; }
+
+        .letter { background: rgba(0, 210, 255, 0.05); border: 1px solid var(--blue); border-radius: 20px; padding: 30px; margin: 30px auto; max-width: 500px; line-height: 2; font-size: 1.2rem; }
+        
+        /* تأثيرات الهلال */
+        .moon { position: fixed; top: -50px; color: var(--gold); font-size: 20px; z-index: 1; animation: fall linear forwards; }
+        @keyframes fall { to { transform: translateY(105vh); opacity: 0; } }
+
+        /* التعديل المهم: تنسيق الرسالة المنبثقة لتظهر في المنتصف */
+        .overlay { 
+            display: none; 
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.85); 
+            z-index: 999; 
+            backdrop-filter: blur(8px); 
+        }
+        #msgPopup { 
+            display: none; 
+            position: fixed; 
+            top: 50%; left: 50%; 
+            transform: translate(-50%, -50%); /* يخليها في النص بالظبط */
+            z-index: 1000; 
+            width: 85%; 
+            max-width: 400px; 
+        }
+        .card-inner { 
+            background: #001a33; 
+            color: #fff; 
+            padding: 35px; 
+            border-radius: 25px; 
+            border: 3px solid var(--blue); 
+            text-align: center; 
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="welcome-screen">
+        <div style="font-family: 'Amiri'; font-size: 2.2rem; margin-bottom: 30px; text-align: center; padding: 0 20px;">إلى رفيقة القلب "سارة".. ❤️🌙</div>
+        <button class="sara-btn" onclick="startSara()">سارة</button>
+        <p style="margin-top: 20px; color: var(--blue); font-weight: bold;">دوسي على اسمك يا سوسو 👇</p>
+    </div>
+
+    <div id="main-content">
+        <div class="container">
+            <h1 style="font-size: 2.5rem; color: var(--blue); text-shadow: 0 0 10px var(--blue);">رمضان أحلى مع سارة 🌙✨</h1>
+            <p>المسافات بعيدة بس القلوب أهالي ✨</p>
+
+            <div style="margin: 25px auto;">
+                <div class="timer-box"><span id="days">00</span>يوم</div>
+                <div class="timer-box"><span id="hours">00</span>ساعة</div>
+                <div class="timer-box"><span id="mins">00</span>دقيقة</div>
+                <div class="timer-box"><span id="secs">00</span>ثانية</div>
+            </div>
+
+            <div class="grid-layout">
+                <div class="icon-btn" onclick="pop(1)"><span>🌻</span><p>رقتك</p></div>
+                <div class="icon-btn" onclick="pop(2)"><span>📞</span><p>كلامنا</p></div>
+                <div class="icon-btn" onclick="pop(3)"><span>🌟</span><p>نور حياتي</p></div>
+                <div class="icon-btn" onclick="pop(4)"><span>🤲</span><p>دعوة ليكي</p></div>
+            </div>
+
+            <div class="letter">
+                سارة يا غالية، رمضان السنة دي ببعتلك فيه كل حبي. أنتِ الصاحبة اللي بتخلي كل حاجة صعبة تهون بكلمة حلوة منها. رمضان كريم يا حبيبتي!
+            </div>
+            <footer style="font-weight: 900; font-size: 1.8rem; color: var(--blue);">بكل الحب: نــدى ❤️</footer>
+        </div>
+    </div>
+
+    <audio id="saraAudio" loop preload="auto">
+        <source src="https://archive.org/download/RamadanFawazeer/HatouElFanawis.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="overlay" onclick="unpop()"></div>
+    <div id="msgPopup">
+        <div class="card-inner">
+            <h2 id="msgTitle" style="color: var(--blue); font-family: 'Amiri'; margin-bottom: 15px;"></h2>
+            <p id="msgBody" style="font-weight: bold; font-size: 1.2rem; line-height: 1.6;"></p>
+            <button onclick="unpop()" style="margin-top: 25px; background: var(--blue); color: #000; border: none; padding: 12px 30px; border-radius: 10px; cursor: pointer; font-weight: 900;">تسلمي يا نودي ❤️</button>
+        </div>
+    </div>
+
+    <script>
+        function startSara() {
+            document.getElementById('saraAudio').play();
+            document.getElementById('welcome-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            setTimeout(() => { document.getElementById('main-content').style.opacity = '1'; }, 100);
+            setInterval(createMoon, 500);
+        }
+        function createMoon() {
+            const m = document.createElement('div'); m.classList.add('moon'); m.innerHTML = '🌙';
+            m.style.left = Math.random() * 100 + 'vw';
+            m.style.animationDuration = Math.random() * 3 + 4 + 's';
+            document.body.appendChild(m);
+            setTimeout(() => m.remove(), 7000);
+        }
+        const content = {
+            1: ["أجمل روح", "رقة قلبك بتوصلني في كل كلمة وبتهون عليا كتير. رمضان معاكي راحة نفسية."],
+            2: ["ونس الليالي", "كلامنا اللي بيعدي الساعات هو أحلى ونس ليا، ربنا يديم تواصلنا يا غالية."],
+            3: ["الصحبة الصالح", "أنتِ النور اللي بيشجعني دايماً على كل حاجة حلوة. ربنا يخليكي ليا."],
+            4: ["من قلبي لقلبك", "يا رب رمضان ده يجبر بخاطرك ويرزقك السعادة اللي بتوزعيها على كل اللي حواليكي."]
+        };
+        function pop(id) {
+            document.getElementById('msgTitle').innerText = content[id][0];
+            document.getElementById('msgBody').innerText = content[id][1];
+            document.getElementById('msgPopup').style.display = 'block';
+            document.querySelector('.overlay').style.display = 'block';
+        }
+        function unpop() {
+            document.getElementById('msgPopup').style.display = 'none';
+            document.querySelector('.overlay').style.display = 'none';
+        }
+        const deadline = new Date('February 18, 2026 00:00:00').getTime();
+        setInterval(() => {
+            const gap = deadline - new Date().getTime();
+            document.getElementById('days').innerText = Math.floor(gap / 86400000);
+            document.getElementById('hours').innerText = Math.floor((gap % 86400000) / 3600000);
+            document.getElementById('mins').innerText = Math.floor((gap % 3600000) / 60000);
+            document.getElementById('secs').innerText = Math.floor((gap % 60000) / 1000);
+        }, 1000);
+    </script>
+</body>
+</html>
+
